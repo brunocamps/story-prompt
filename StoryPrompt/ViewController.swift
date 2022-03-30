@@ -33,7 +33,16 @@ class ViewController: UIViewController {
     }
     @IBAction func generateStoryPrompt(_ sender: Any) {
         updateStoryPrompt()
-        print(storyPrompt)
+        if storyPrompt.isValid() {
+            print(storyPrompt)
+        } else {
+            let alert = UIAlertController(title: "Invalid story prompt", message: "Please fill out all of the fields", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: {action
+                in
+            })
+            alert.addAction(action)
+            present(alert, animated: true)
+        }
     }
     @IBOutlet weak var storyPromptImageView: UIImageView!
     override func viewDidLoad() {

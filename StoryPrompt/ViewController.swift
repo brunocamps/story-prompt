@@ -30,6 +30,10 @@ class ViewController: UIViewController {
         }
         print(storyPrompt.genre)
     }
+    @IBAction func generateStoryPrompt(_ sender: Any) {
+        updateStoryPrompt()
+        print(storyPrompt)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -38,10 +42,23 @@ class ViewController: UIViewController {
         storyPrompt.noun = "toaster"
         storyPrompt.adjective = "smelly"
         storyPrompt.verb = "burps"
-        storyPrompt.number = Int(numberSlider.value)
-        print(storyPrompt)
+        storyPrompt.number = Int(numberSlider.value)  
+    }
+    
+    func updateStoryPrompt() {
+        // set the values of our story prompt
+        storyPrompt.noun = nounTextField.text ?? ""
+        storyPrompt.adjective = adjectiveTextField.text ?? ""
+        storyPrompt.verb = verbTextField.text ?? ""
     }
 
 
 }
 
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        updateStoryPrompt()
+        return true
+    }
+}

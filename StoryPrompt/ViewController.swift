@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class ViewController: UIViewController {
     
@@ -34,6 +35,7 @@ class ViewController: UIViewController {
         updateStoryPrompt()
         print(storyPrompt)
     }
+    @IBOutlet weak var storyPromptImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -42,7 +44,12 @@ class ViewController: UIViewController {
         storyPrompt.noun = "toaster"
         storyPrompt.adjective = "smelly"
         storyPrompt.verb = "burps"
-        storyPrompt.number = Int(numberSlider.value)  
+        storyPrompt.number = Int(numberSlider.value)
+        storyPromptImageView.isUserInteractionEnabled = true
+        
+        // create gesture recognizer
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeImage))
+        storyPromptImageView.addGestureRecognizer(gestureRecognizer)
     }
     
     func updateStoryPrompt() {
@@ -51,8 +58,16 @@ class ViewController: UIViewController {
         storyPrompt.adjective = adjectiveTextField.text ?? ""
         storyPrompt.verb = verbTextField.text ?? ""
     }
-
-
+    
+    @objc func changeImage() {
+        //create our picker
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .images
+        configuration.selectionLimit = 1
+        let controller = PHPickerViewController(configuration: configuration)
+        controller.delegate = self
+        present(controller, animated: true)
+    }
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -62,3 +77,23 @@ extension ViewController: UITextFieldDelegate {
         return true
     }
 }
+
+extension ViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        if !results.isEmpty {
+            let result = results.first!
+            let itemProvider = result.itemProvider
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                    guard let image = image as? UIImage else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self?.storyPromptImageView.image = image
+                    }
+                }
+            }
+                }
+            }
+        }
+

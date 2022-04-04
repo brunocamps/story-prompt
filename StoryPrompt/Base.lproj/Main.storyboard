@@ -40,7 +40,13 @@
                             <outlet property="delegate" destination="hQ9-Rj-2Lx" id="gI0-rI-DF9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="XYA-wJ-ysZ"/>
+                    <navigationItem key="navigationItem" id="XYA-wJ-ysZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Br2-Va-Ntf">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="pHw-4d-3bc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="crz-V9-P48" kind="show" identifier="ShowStoryPrompt" id="SpX-cd-ZGG"/>
                     </connections>
@@ -77,7 +83,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="hle-iM-o9s">
-                                <rect key="frame" x="20" y="101" width="374" height="653.5"/>
+                                <rect key="frame" x="20" y="145" width="374" height="653.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ncf-Ho-U2C">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>

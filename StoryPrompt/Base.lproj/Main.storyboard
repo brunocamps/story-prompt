@@ -8,6 +8,47 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Story Prompt Table View Controller-->
+        <scene sceneID="fpl-jd-arn">
+            <objects>
+                <tableViewController id="hQ9-Rj-2Lx" customClass="StoryPromptTableViewController" customModule="StoryPrompt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="XK8-xp-93O">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryPromptCell" textLabel="eGM-6l-GO5" style="IBUITableViewCellStyleDefault" id="2f6-4R-NGQ">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2f6-4R-NGQ" id="lzW-yO-hCe">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eGM-6l-GO5">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hQ9-Rj-2Lx" id="6bF-8G-V8k"/>
+                            <outlet property="delegate" destination="hQ9-Rj-2Lx" id="gI0-rI-DF9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="XYA-wJ-ysZ"/>
+                    <connections>
+                        <segue destination="crz-V9-P48" kind="show" identifier="ShowStoryPrompt" id="SpX-cd-ZGG"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DMU-kS-FSp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-975" y="-11"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="C7r-sI-OjD">
             <objects>
@@ -20,12 +61,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Zd8-hS-1uP"/>
+                        <segue destination="hQ9-Rj-2Lx" kind="relationship" relationship="rootViewController" id="lNb-C6-NEy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hiL-po-8Jj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1141" y="41"/>
+            <point key="canvasLocation" x="-1816" y="-11"/>
         </scene>
         <!--New Story Prompt-->
         <scene sceneID="tne-QT-ifu">
@@ -36,7 +77,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="hle-iM-o9s">
-                                <rect key="frame" x="20" y="145" width="374" height="653.5"/>
+                                <rect key="frame" x="20" y="101" width="374" height="653.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ncf-Ho-U2C">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
@@ -172,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28.985507246376812" y="40.848214285714285"/>
+            <point key="canvasLocation" x="-32" y="-407"/>
         </scene>
         <!--Story Prompt View Controller-->
         <scene sceneID="ymn-3V-IqI">
@@ -218,6 +259,9 @@
             <point key="canvasLocation" x="926" y="15"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="SpX-cd-ZGG"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="10.circle" catalog="system" width="128" height="121"/>
         <image name="5.circle" catalog="system" width="128" height="121"/>
@@ -225,6 +269,9 @@
         <image name="object-object_box-of-books" width="1000" height="1000"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

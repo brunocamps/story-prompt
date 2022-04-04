@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-class ViewController: UIViewController {
+class AddStoryPromptViewController: UIViewController {
     
     let storyPrompt = StoryPromptEntry()
     
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     @IBAction func generateStoryPrompt(_ sender: Any) {
         updateStoryPrompt()
         if storyPrompt.isValid() {
-            print(storyPrompt)
+            performSegue(withIdentifier: "StoryPrompt", sender: nil)
         } else {
             let alert = UIAlertController(title: "Invalid story prompt", message: "Please fill out all of the fields", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: {action
@@ -50,9 +50,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         numberSlider.value = 7.5
-        storyPrompt.noun = "toaster"
-        storyPrompt.adjective = "smelly"
-        storyPrompt.verb = "burps"
+//        storyPrompt.noun = "toaster"
+//        storyPrompt.adjective = "smelly"
+//        storyPrompt.verb = "burps"
         storyPrompt.number = Int(numberSlider.value)
         storyPromptImageView.isUserInteractionEnabled = true
         
@@ -77,9 +77,19 @@ class ViewController: UIViewController {
         controller.delegate = self
         present(controller, animated: true)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "StoryPrompt" {
+            guard let storyPromptViewController = segue.destination as?
+                    StoryPromptViewController else {
+                return
+            }
+            storyPromptViewController.storyPrompt = storyPrompt
+        }
+    }
 }
 
-extension ViewController: UITextFieldDelegate {
+extension AddStoryPromptViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         updateStoryPrompt()
@@ -87,7 +97,7 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
-extension ViewController: PHPickerViewControllerDelegate {
+extension AddStoryPromptViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         if !results.isEmpty {
             let result = results.first!

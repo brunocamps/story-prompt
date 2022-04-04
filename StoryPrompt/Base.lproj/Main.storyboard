@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ffY-nZ-ECq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,16 +8,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="C7r-sI-OjD">
+            <objects>
+                <navigationController id="ffY-nZ-ECq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6rd-QH-QZU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xp2-3k-TdK">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Zd8-hS-1uP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hiL-po-8Jj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1141" y="41"/>
+        </scene>
+        <!--New Story Prompt-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="StoryPrompt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AddStoryPromptViewController" customModule="StoryPrompt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="hle-iM-o9s">
-                                <rect key="frame" x="20" y="101" width="374" height="653.5"/>
+                                <rect key="frame" x="20" y="145" width="374" height="653.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ncf-Ho-U2C">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
@@ -126,7 +145,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Generate Story Prompt"/>
                                         <connections>
-                                            <action selector="generateStoryPrompt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pcK-cT-fsB"/>
+                                            <action selector="generateStoryPrompt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H1f-Hy-CRb"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -140,6 +159,7 @@
                             <constraint firstItem="hle-iM-o9s" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="YEq-Pg-co6"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="New Story Prompt" id="W21-MF-xb0"/>
                     <connections>
                         <outlet property="adjectiveTextField" destination="U4B-Co-fVe" id="fFD-Uf-C6R"/>
                         <outlet property="nounTextField" destination="QKZ-jr-rsb" id="LYu-YX-uh1"/>
@@ -147,16 +167,61 @@
                         <outlet property="numberSlider" destination="TfK-OA-ucO" id="wwH-fD-CCl"/>
                         <outlet property="storyPromptImageView" destination="Cbp-yV-GiK" id="MVn-Dz-Gde"/>
                         <outlet property="verbTextField" destination="U4B-Co-fVe" id="qtn-7F-qy7"/>
+                        <segue destination="crz-V9-P48" kind="show" identifier="StoryPrompt" id="aUZ-qW-LHp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="28.985507246376812" y="40.848214285714285"/>
         </scene>
+        <!--Story Prompt View Controller-->
+        <scene sceneID="ymn-3V-IqI">
+            <objects>
+                <viewController id="crz-V9-P48" customClass="StoryPromptViewController" customModule="StoryPrompt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H8b-R9-x0V">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="object-badge-banner" translatesAutoresizingMaskIntoConstraints="NO" id="QGj-TV-gjb">
+                                <rect key="frame" x="0.0" y="-52" width="414" height="1000"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="P9H-J9-Fzl">
+                                <rect key="frame" x="87" y="393" width="240" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="O6p-m9-w6t"/>
+                                    <constraint firstAttribute="width" constant="240" id="SiD-eU-3CN"/>
+                                    <constraint firstAttribute="height" constant="110" id="niZ-bZ-cPb"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7jC-s2-5x6"/>
+                        <color key="backgroundColor" red="0.0" green="0.89411764709999997" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="P9H-J9-Fzl" firstAttribute="centerX" secondItem="QGj-TV-gjb" secondAttribute="centerX" id="0HA-Yw-dZ5"/>
+                            <constraint firstItem="P9H-J9-Fzl" firstAttribute="centerY" secondItem="QGj-TV-gjb" secondAttribute="centerY" id="1EN-lK-2nn"/>
+                            <constraint firstItem="QGj-TV-gjb" firstAttribute="centerY" secondItem="H8b-R9-x0V" secondAttribute="centerY" id="9qH-PT-ZdZ"/>
+                            <constraint firstItem="QGj-TV-gjb" firstAttribute="centerX" secondItem="H8b-R9-x0V" secondAttribute="centerX" id="fQK-lu-Hek"/>
+                            <constraint firstItem="QGj-TV-gjb" firstAttribute="width" secondItem="H8b-R9-x0V" secondAttribute="width" id="oAT-V9-mN6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="znn-80-xXD"/>
+                    <connections>
+                        <outlet property="storyPromptTextView" destination="P9H-J9-Fzl" id="NJe-UI-DXp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DDE-CB-BeV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="926" y="15"/>
+        </scene>
     </scenes>
     <resources>
         <image name="10.circle" catalog="system" width="128" height="121"/>
         <image name="5.circle" catalog="system" width="128" height="121"/>
+        <image name="object-badge-banner" width="1000" height="1000"/>
         <image name="object-object_box-of-books" width="1000" height="1000"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -45,6 +45,10 @@ class AddStoryPromptViewController: UIViewController {
         }
     }
     @IBOutlet weak var storyPromptImageView: UIImageView!
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -59,9 +63,11 @@ class AddStoryPromptViewController: UIViewController {
         // create gesture recognizer
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeImage))
         storyPromptImageView.addGestureRecognizer(gestureRecognizer)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateStoryPrompt), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
-    func updateStoryPrompt() {
+    @objc func updateStoryPrompt() {
         // set the values of our story prompt
         storyPrompt.noun = nounTextField.text ?? ""
         storyPrompt.adjective = adjectiveTextField.text ?? ""
@@ -85,6 +91,7 @@ class AddStoryPromptViewController: UIViewController {
                 return
             }
             storyPromptViewController.storyPrompt = storyPrompt
+            storyPromptViewController.isNewStoryPrompt = true
         }
     }
 }
@@ -92,7 +99,6 @@ class AddStoryPromptViewController: UIViewController {
 extension AddStoryPromptViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        updateStoryPrompt()
         return true
     }
 }

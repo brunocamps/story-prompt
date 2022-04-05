@@ -229,9 +229,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="object-badge-banner" translatesAutoresizingMaskIntoConstraints="NO" id="QGj-TV-gjb">
-                                <rect key="frame" x="0.0" y="-52" width="414" height="1000"/>
-                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="P9H-J9-Fzl">
                                 <rect key="frame" x="87" y="393" width="240" height="110"/>
                                 <constraints>
@@ -244,6 +241,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="object-badge-banner" translatesAutoresizingMaskIntoConstraints="NO" id="QGj-TV-gjb">
+                                <rect key="frame" x="0.0" y="-52" width="414" height="1000"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7jC-s2-5x6"/>
                         <color key="backgroundColor" red="0.0" green="0.89411764709999997" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -258,9 +258,12 @@
                     <navigationItem key="navigationItem" id="znn-80-xXD"/>
                     <connections>
                         <outlet property="storyPromptTextView" destination="P9H-J9-Fzl" id="NJe-UI-DXp"/>
+                        <segue destination="MAq-3c-jA8" kind="unwind" identifier="CancelStoryPrompt" unwindAction="cancelStoryPromptWithUnwindSegue:" id="TyV-Jq-qAb"/>
+                        <segue destination="MAq-3c-jA8" kind="unwind" identifier="SaveStoryPrompt" unwindAction="saveStoryPromptWithUnwindSegue:" id="8h0-l1-i8M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDE-CB-BeV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="MAq-3c-jA8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="926" y="15"/>
         </scene>
